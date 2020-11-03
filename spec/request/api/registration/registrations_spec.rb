@@ -8,6 +8,10 @@ RSpec.describe "POST /api/sign_up", type: :request do
              email: "client@mail.com",
              password: "password",
              password_confirmation: "password",
+             company_name: "company name",
+             company_url: "http://develup.com",
+             role: "client",
+
            },
            headers: headers
     end
