@@ -4,23 +4,23 @@ Assignment.create(
   [
     {
       title: "Build a Web page",
-      skills: ["Ruby", "JavaScript"],
+      skills: ["Ruby", "Javascript"],
       points: 320,
       budget: 500,
     },
     {
       title: "Build an API",
-      skills: ["Ruby", "Rails"],
+      skills: ["Ruby", "Fullstack"],
       points: 670,
       budget: 1500,
     }, {
       title: "Build a Native App",
-      skills: ["React Native", "JavaScript"],
+      skills: ["React Native", "Javascript"],
       points: 1320,
       budget: 2500,
     }, {
       title: "Build a Home page",
-      skills: ["HTML", "JavaScript", "CSS"],
+      skills: ["HTML-CSS", "Javascript"],
       points: 220,
       budget: 300,
     },
