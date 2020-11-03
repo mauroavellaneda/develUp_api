@@ -15,7 +15,7 @@ RSpec.describe "POST /api/sign_up", type: :request do
            headers: headers
     end
 
-    it "is expected to respond with ok status" do
+    it "responds with ok status" do
       expect(response).to have_http_status :ok
     end
 
@@ -38,7 +38,7 @@ RSpec.describe "POST /api/sign_up", type: :request do
            headers: headers
     end
 
-    it "is expected to respond with unprocessable entity status" do
+    it "responds with unprocessable entity status" do
       expect(response).to have_http_status :unprocessable_entity
     end
 
@@ -61,7 +61,7 @@ RSpec.describe "POST /api/sign_up", type: :request do
            headers: headers
     end
 
-    it "is expected to respond with unprocessable entity status" do
+    it "responds with unprocessable entity status" do
       expect(response).to have_http_status :unprocessable_entity
     end
 
@@ -85,7 +85,7 @@ RSpec.describe "POST /api/sign_up", type: :request do
            headers: headers
     end
 
-    it "is expected to respond with unprocessable entity status" do
+    it "responds with unprocessable entity status" do
       expect(response).to have_http_status :unprocessable_entity
     end
 
@@ -105,7 +105,7 @@ RSpec.describe "POST /api/sign_up", type: :request do
            headers: headers
     end
 
-    it "is expected to respond with unprocessable entity status" do
+    it "responds with unprocessable entity status" do
       expect(response).to have_http_status :unprocessable_entity
     end
 
