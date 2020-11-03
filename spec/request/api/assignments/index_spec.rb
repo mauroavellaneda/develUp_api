@@ -1,4 +1,4 @@
-RSpec.describe "GET /api/v1/assignments", type: :request do
+RSpec.describe "GET /api/assignments", type: :request do
   let!(:assignments) do
     5.times do
       create(:assignment)
@@ -7,7 +7,7 @@ RSpec.describe "GET /api/v1/assignments", type: :request do
 
   describe "successfully" do
     before do
-      get "/api/v1/assignments"
+      get "/api/assignments"
     end
 
     it "is expected to respond with ok status" do
