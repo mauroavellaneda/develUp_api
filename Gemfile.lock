@@ -42,6 +42,8 @@ GEM
       activemodel (>= 4.1, < 6.1)
       case_transform (>= 0.2)
       jsonapi-renderer (>= 0.1.1.beta1, < 0.3)
+    active_model_validates_intersection_of (2.0.0)
+      activemodel (>= 5.0.0)
     activejob (6.0.3.4)
       activesupport (= 6.0.3.4)
       globalid (>= 0.3.6)
@@ -206,6 +208,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers
+  active_model_validates_intersection_of
   bootsnap (>= 1.4.2)
   coveralls
   factory_bot_rails

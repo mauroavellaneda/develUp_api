@@ -19,7 +19,7 @@ RSpec.describe "GET /api/assignments", type: :request do
     end
 
     it "is expected to return a specific assignment skills" do
-      expect(response_json["assignments"].second["skills"]).to eq ["JavaScript", "Ruby"]
+      expect(response_json["assignments"].second["skills"]).to eq ["Javascript", "Ruby"]
     end
 
     it "is expected to return a specific assignment points" do

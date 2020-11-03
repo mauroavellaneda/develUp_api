@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :assignment do
     title { "MyString" }
-    skills { ["JavaScript", "Ruby"] }
+    skills { ["Javascript", "Ruby"] }
     points { 320 }
     budget { 500 }
   end

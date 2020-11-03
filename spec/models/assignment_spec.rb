@@ -14,8 +14,9 @@ RSpec.describe Assignment, type: :model do
 
   describe "Validations" do
     it { is_expected.to validate_presence_of :title }
-    it { is_expected.to validate_presence_of :skills }
     it { is_expected.to validate_presence_of :points }
     it { is_expected.to validate_presence_of :budget }
+    it { is_expected.to_not allow_value(["Rubbish", "Invalid skill"]).for(:skills) }
+    it { is_expected.to allow_value(["Javascript", "Ruby"]).for(:skills) }
   end
 end
