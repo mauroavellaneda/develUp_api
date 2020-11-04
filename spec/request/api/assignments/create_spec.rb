@@ -15,7 +15,7 @@ RSpec.describe "POST /api/assignments", type: :request do
                skills: ["Javascript", "Ruby"],
                timeframe: 9,
              },
-           }
+           }, headers: headers
     end
 
     it "responds with create status" do

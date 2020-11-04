@@ -1,6 +1,6 @@
 class Api::AssignmentsController < ApplicationController
-  before_action authenticate_user!, only: :create
-  before_action role_client?, only: :create
+  before_action :authenticate_user!, only: :create
+  before_action :role_client?, only: :create
 
   def index
     assignments = Assignment.all
@@ -8,8 +8,7 @@ class Api::AssignmentsController < ApplicationController
   end
 
   def create
-    assignments = Assignment.create(assignments_params)
-
+    assignments = current_user.assignments.create(assignments_params)
     render json: { message: "successfully saved" }
   end
 
