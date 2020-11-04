@@ -8,4 +8,10 @@ class ApplicationController < ActionController::API
     added_attrs = [:company_name, :email, :password, :password_confirmation, :company_url, :role]
     devise_parameter_sanitizer.permit :sign_up, keys: added_attrs
   end
+
+  def error_message(errors)
+    error_message = errors.full_messages.to_sentence
+
+    render json: { message: error_message }, status: 422
+  end
 end

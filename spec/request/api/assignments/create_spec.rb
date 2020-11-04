@@ -31,7 +31,7 @@ RSpec.describe "POST /api/assignments", type: :request do
       expect(assignment.title).to eq "Rails Developer to work on a project"
     end
 
-    describe "unauthorized role unsuccessfully create an assignment" do
+    describe "unauthorized without credentials unsuccessfully create an assignment" do
       let(:user) { create(:user, role: "client") }
       let(:credentials) { user.create_new_auth_token }
       let(:headers) { { HTTP_ACCEPT: "application/json" } }
@@ -56,6 +56,25 @@ RSpec.describe "POST /api/assignments", type: :request do
 
       it "is expected to return error message" do
         expect(response_json["errors"][0]).to eq "You need to sign in or sign up before continuing."
+      end
+    end
+
+    describe "without valid params" do
+      before do
+        post "/api/assignments",
+             params: {
+               assignment: {
+                 title: "Rails Developer to work on a project",
+               },
+             }, headers: headers
+      end
+
+      it "responds with unprocessable entity status" do
+        expect(response).to have_http_status :unprocessable_entity
+      end
+
+      it "returns a unsuccesfully message if params are blank" do
+        expect(response_json["message"]).to eq "Points can't be blank, Budget can't be blank, Description can't be blank, and Skills can't be blank"
       end
     end
   end
