@@ -10,7 +10,9 @@ RSpec.describe "POST /api/assignments", type: :request do
              title: "Rails Developer to work on a project",
              description: "I am looking for a Rails developer for about 50-60 hours of work to work on a project. You must have good experience with rails (min. 3 years), integrating with 3rd part api, oauth, stripe, etc. You must also be available to start ASAP and update regularly.",
              budget: 500,
-             skills: ["ruby"],
+             points: 250,
+             skills: ["Ruby"],
+             timeframe: 10,
            } }
     end
 
