@@ -9,7 +9,12 @@ class Api::AssignmentsController < ApplicationController
 
   def create
     assignment = current_user.assignments.create(assignments_params)
-    render json: { message: "successfully saved" }
+
+    if assignment.persisted?
+      render json: { message: "successfully saved" }
+    else
+      error_message(assignment.errors)
+    end
   end
 
   private
