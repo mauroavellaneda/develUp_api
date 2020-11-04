@@ -1,28 +1,12 @@
 Assignment.destroy_all
+client = User.create(email: "client@mail.com", password: "password", password_confirmation: "password", company_name: "Develup", company_url: "http://develup.com", role: "client")
 
 Assignment.create(
-  [
-    {
-      title: "Build a Web page",
-      skills: ["Ruby", "JavaScript"],
-      points: 320,
-      budget: 500,
-    },
-    {
-      title: "Build an API",
-      skills: ["Ruby", "Rails"],
-      points: 670,
-      budget: 1500,
-    }, {
-      title: "Build a Native App",
-      skills: ["React Native", "JavaScript"],
-      points: 1320,
-      budget: 2500,
-    }, {
-      title: "Build a Home page",
-      skills: ["HTML", "JavaScript", "CSS"],
-      points: 220,
-      budget: 300,
-    },
-  ]
+  title: "Build a Web page",
+  skills: ["Ruby", "JavaScript"],
+  points: 320,
+  budget: 500,
+  description: "I need to design a cool website with some Animation graphics and video. The New company is a PPE manufacturer and distributor. We will sell direct to the public.",
+  client_id: client.id,
+  timeframe: 25,
 )
