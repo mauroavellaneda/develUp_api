@@ -8,14 +8,14 @@ class Api::AssignmentsController < ApplicationController
   end
 
   def create
-    assignments = current_user.assignments.create(assignments_params)
+    assignment = current_user.assignments.create(assignments_params)
     render json: { message: "successfully saved" }
   end
 
   private
 
   def assignments_params
-    params.require(:assignment).permit(:title, :skills, :points, :budget, :description, :timeframe)
+    params.require(:assignment).permit(:title, :points, :budget, :description, :timeframe, :skills => [])
   end
 
   def role_client?
