@@ -10,5 +10,6 @@ class Assignment < ApplicationRecord
 
   validates_intersection_of :skills, in: DEFAULT_SKILLS, message: "Invalid skill"
 
-  validates_presence_of :title, :skills, :points, :budget
+  validates_presence_of :title, :points, :budget, :description, :timeframe, :skills
+  belongs_to :client, class_name: "User"
 end
