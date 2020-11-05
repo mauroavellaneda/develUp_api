@@ -50,8 +50,8 @@ RSpec.describe "POST /api/assignments", type: :request do
              }, headers: headers
       end
 
-      it "is expected to return 401 response status" do
-        expect(response).to have_http_status 401
+      it "is expected to return unauthorized status" do
+        expect(response).to have_http_status :unauthorized
       end
 
       it "is expected to return error message" do
