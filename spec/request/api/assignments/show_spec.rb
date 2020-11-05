@@ -14,7 +14,7 @@ RSpec.describe "POST /api/assignments", type: :request do
     end
 
     it "returns a specific assignment description" do
-      expect(response_json["assignment"]["description"]).to eq "MyText"
+      expect(response_json["description"]).to eq "MyText"
     end
   end
 end

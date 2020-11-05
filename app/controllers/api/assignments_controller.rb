@@ -1,5 +1,5 @@
 class Api::AssignmentsController < ApplicationController
-  before_action :authenticate_user!, only: :create
+  before_action :authenticate_user!, only: [:create, :show]
   before_action :role_client?, only: :create
 
   def index
@@ -15,6 +15,12 @@ class Api::AssignmentsController < ApplicationController
     else
       error_message(assignment.errors)
     end
+  end
+
+  def show
+    assignment = Assignment.find(params[:id])
+
+    render json: assignment, serializer: AssignmentsShowSerializer
   end
 
   private
