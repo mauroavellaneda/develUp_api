@@ -49,7 +49,7 @@ assignment5 = Assignment.create(
   timeframe: 25,
 )
 assignment2 = Assignment.create(
-  title: "Build a Web page",
+  title: "Build a responsive Web page",
   skills: ["Ruby", "Javascript"],
   points: 320,
   budget: 500,
@@ -58,7 +58,7 @@ assignment2 = Assignment.create(
   timeframe: 25,
 )
 assignment1 = Assignment.create(
-  title: "Dedicated React Developer",
+  title: "Awesome React Developer",
   skills: ["React", "HTML-CSS"],
   points: 40,
   budget: 250,
@@ -67,7 +67,7 @@ assignment1 = Assignment.create(
   timeframe: 70,
 )
 assignment3 = Assignment.create(
-  title: "Build an API",
+  title: "Build an REST API",
   skills: ["Ruby", "Angular"],
   points: 670,
   budget: 1500,
@@ -76,7 +76,7 @@ assignment3 = Assignment.create(
   timeframe: 25,
 )
 assignment4 = Assignment.create(
-  title: "Build a Native App",
+  title: "Build a Home page 2",
   skills: ["React Native", "Javascript"],
   points: 1320,
   budget: 2500,
@@ -85,7 +85,7 @@ assignment4 = Assignment.create(
   timeframe: 25,
 )
 assignment5 = Assignment.create(
-  title: "Build a Home page",
+  title: "Build a Home page 3",
   skills: ["HTML-CSS", "Javascript"],
   points: 220,
   budget: 300,
@@ -94,7 +94,7 @@ assignment5 = Assignment.create(
   timeframe: 25,
 )
 assignment2 = Assignment.create(
-  title: "Build a Web page",
+  title: "Build a Web page 4",
   skills: ["Ruby", "Javascript"],
   points: 320,
   budget: 500,
@@ -103,7 +103,7 @@ assignment2 = Assignment.create(
   timeframe: 25,
 )
 assignment1 = Assignment.create(
-  title: "Dedicated React Developer",
+  title: "Dedicated React Developer 5",
   skills: ["React", "HTML-CSS"],
   points: 40,
   budget: 250,
@@ -112,7 +112,7 @@ assignment1 = Assignment.create(
   timeframe: 70,
 )
 assignment3 = Assignment.create(
-  title: "Build an API",
+  title: "Build an API 6",
   skills: ["Ruby", "Angular"],
   points: 670,
   budget: 1500,
@@ -122,7 +122,7 @@ assignment3 = Assignment.create(
 )
 assignment4 = Assignment.create(
   title: "Build a Native App",
-  skills: ["React Native", "Javascript"],
+  skills: ["React Native", "Javascript 7"],
   points: 1320,
   budget: 2500,
   description: "I need to design a cool website with some Animation graphics and video. The New company is a PPE manufacturer and distributor. We will sell direct to the public.",
@@ -130,8 +130,8 @@ assignment4 = Assignment.create(
   timeframe: 25,
 )
 assignment5 = Assignment.create(
-  title: "Build a Home page",
-  skills: ["HTML-CSS", "Javascript"],
+  title: "Build a Full Stack Rails application",
+  skills: ["Ruby"],
   points: 220,
   budget: 300,
   description: "I need to design a cool website with some Animation graphics and video. The New company is a PPE manufacturer and distributor. We will sell direct to the public.",
