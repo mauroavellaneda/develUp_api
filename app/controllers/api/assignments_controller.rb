@@ -1,6 +1,7 @@
 class Api::AssignmentsController < ApplicationController
-  before_action :authenticate_user!, only: :create
-  before_action :role_client?, only: :create
+
+  before_action :authenticate_user!, only: [:create]
+  before_action :role_client?, only: [:create]
 
   def index
     assignments = Assignment.all
@@ -14,6 +15,15 @@ class Api::AssignmentsController < ApplicationController
       render json: { message: "successfully saved" }
     else
       error_message(assignment.errors)
+    end
+  end
+
+  def show
+    begin
+    assignment = Assignment.find(params[:id])
+      render json: assignment, serializer: AssignmentsShowSerializer
+    rescue => error
+      render json: { error_message: "Sorry, that assignment does not exist" }, status: :not_found
     end
   end
 
