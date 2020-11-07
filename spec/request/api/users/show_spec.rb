@@ -1,5 +1,5 @@
 RSpec.describe "GET /api/users", type: :request do
-  let(:develuper) { create(:develuper) }
+  let!(:develuper) { create(:develuper) }
   let(:credentials) { develuper.create_new_auth_token }
   let(:headers) { { HTTP_ACCEPT: "application/json" }.merge!(credentials) }
 
@@ -23,7 +23,7 @@ RSpec.describe "GET /api/users", type: :request do
     end
 
     it "returns a specific user level" do
-      expect(response_json["user"]["level"]).to eq 1
+      expect(response_json["user"]["level"]).to eq 0
     end
 
     it "returns a specific user skills" do
@@ -31,7 +31,7 @@ RSpec.describe "GET /api/users", type: :request do
     end
 
     it "returns a specific user completed projects" do
-      expect(response_json["user"]["completed_projects"]).to eq 2
+      expect(response_json["user"]["completed_projects"]).to eq 0
     end
 
     it "returns a specific user poins" do
@@ -50,7 +50,7 @@ RSpec.describe "GET /api/users", type: :request do
     end
 
     it "is expected to return with error message" do
-      expect(response_json["error_message"]).to eq "Sorry, that user does not exist"
+      expect(response_json["error_message"]).to eq "Sorry, user does not exist"
     end
   end
 

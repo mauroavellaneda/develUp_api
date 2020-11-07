@@ -14,8 +14,8 @@ FactoryBot.define do
       skills { ["Javascript", "Ruby"] }
       points { 320 }
       email { "mail@mail.com" }
-      level { 1 }
-      completed_projects { 2 }
+      level {0}
+      completed_projects {0}
     end
   end
 end
