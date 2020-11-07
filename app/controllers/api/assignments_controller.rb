@@ -1,7 +1,7 @@
 class Api::AssignmentsController < ApplicationController
 
-  before_action :authenticate_user!, only: [:create, :show]
-  before_action :role_client?, only: [:create, :show]
+  before_action :authenticate_user!, only: [:create]
+  before_action :role_client?, only: [:create]
 
   def index
     assignments = Assignment.all

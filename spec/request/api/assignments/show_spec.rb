@@ -3,7 +3,7 @@ RSpec.describe "GET /api/assignments", type: :request do
   let(:credentials) { user.create_new_auth_token }
   let(:assignment) { create(:assignment) }
   let(:headers) { { HTTP_ACCEPT: "application/json" }.merge!(credentials) }
-  describe "clients can see specific assignments" do
+  describe "visitor can see specific assignments" do
     before do
       get "/api/assignments/#{assignment.id}",
           headers: headers
@@ -11,19 +11,19 @@ RSpec.describe "GET /api/assignments", type: :request do
     it "responds with ok status" do
       expect(response).to have_http_status :ok
     end
-    it "returns a specific assignment description" do
+    it "returns a specific assignment title" do
       expect(response_json["assignment"]["title"]).to eq "MyString"
     end
     it "returns a specific assignment description" do
       expect(response_json["assignment"]["description"]).to eq "MyText"
     end
-    it "returns a specific assignment description" do
+    it "returns a specific assignment skills" do
       expect(response_json["assignment"]["skills"]).to eq ["Javascript", "Ruby"]
     end
-    it "returns a specific assignment description" do
+    it "returns a specific assignment budget" do
       expect(response_json["assignment"]["budget"]).to eq 500
     end
-    it "returns a specific assignment description" do
+    it "returns a specific assignment poins" do
       expect(response_json["assignment"]["points"]).to eq 320
     end
   end
@@ -32,7 +32,7 @@ RSpec.describe "GET /api/assignments", type: :request do
       get "/api/assignments/wrongId",
           headers: headers
     end
-    it "responds with ok status" do
+    it "responds with not found status" do
       expect(response).to have_http_status :not_found
     end
     it "is expected to return with error message" do
