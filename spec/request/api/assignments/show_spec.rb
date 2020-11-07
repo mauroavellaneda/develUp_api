@@ -3,7 +3,6 @@ RSpec.describe "GET /api/assignments", type: :request do
   let(:credentials) { user.create_new_auth_token }
   let(:assignment) { create(:assignment) }
   let(:headers) { { HTTP_ACCEPT: "application/json" }.merge!(credentials) }
-
   describe "clients can see specific assignments" do
     before do
       get "/api/assignments/#{assignment.id}",
@@ -12,7 +11,6 @@ RSpec.describe "GET /api/assignments", type: :request do
     it "responds with ok status" do
       expect(response).to have_http_status :ok
     end
-
     it "returns a specific assignment description" do
       expect(response_json["assignment"]["title"]).to eq "MyString"
     end
@@ -29,31 +27,25 @@ RSpec.describe "GET /api/assignments", type: :request do
       expect(response_json["assignment"]["points"]).to eq 320
     end
   end
-
-  describe "clients can't see specific assignment" do
+  describe "request with wrond id fails" do
     before do
       get "/api/assignments/wrongId",
           headers: headers
     end
-
     it "responds with ok status" do
       expect(response).to have_http_status :not_found
     end
-
     it "is expected to return with error message" do
       expect(response_json["error_message"]).to eq "Sorry, that assignment does not exist"
     end
   end
-
-  describe "unauthorized user can't see specific assignment" do
+  describe "visitor can't see specific assignment" do
     before do
       get "/api/assignments/#{assignment.id}"
     end
-
     it "is expected to return unauthozired response status" do
       expect(response).to have_http_status :unauthorized
     end
-
     it "is expected to return error message" do
       expect(response_json["errors"][0]).to eq "You need to sign in or sign up before continuing."
     end
