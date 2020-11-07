@@ -6,7 +6,7 @@ RSpec.describe "GET /api/users", type: :request do
 
   describe "API provides single develuper profile" do
     before do
-      get "/api/users/#{user.id}",
+      get "/api/users/#{develuper.id}",
           headers: headers
     end
 
@@ -56,7 +56,7 @@ RSpec.describe "GET /api/users", type: :request do
 
   describe "visitor can't see specific user" do
     before do
-      get "/api/users/#{user.id}"
+      get "/api/users/#{develuper.id}"
     end
 
     it "is expected to return unauthozired response status" do
