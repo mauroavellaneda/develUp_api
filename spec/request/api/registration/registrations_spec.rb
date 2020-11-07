@@ -71,7 +71,7 @@ RSpec.describe "POST /api/sign_up", type: :request do
   end
 
   describe "Unsuccesfuly register - email already exists" do
-    let!(:user) { create(:user, email: "client@mail.com") }
+    let!(:client) { create(:client, email: "client@mail.com") }
     before do
       post "/api/auth",
            params: {

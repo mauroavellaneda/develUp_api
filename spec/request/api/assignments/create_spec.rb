@@ -1,6 +1,6 @@
 RSpec.describe "POST /api/assignments", type: :request do
-  let(:user) { create(:user, role: "client") }
-  let(:credentials) { user.create_new_auth_token }
+  let(:client) { create(:client) }
+  let(:credentials) { client.create_new_auth_token }
   let(:headers) { { HTTP_ACCEPT: "application/json" }.merge!(credentials) }
 
   describe "client successfully create an assignment" do
@@ -32,8 +32,8 @@ RSpec.describe "POST /api/assignments", type: :request do
     end
 
     describe "unauthorized without credentials unsuccessfully create an assignment" do
-      let(:user) { create(:user, role: "client") }
-      let(:credentials) { user.create_new_auth_token }
+      let(:client) { create(:client) }
+      let(:credentials) { client.create_new_auth_token }
       let(:headers) { { HTTP_ACCEPT: "application/json" } }
 
       before do
