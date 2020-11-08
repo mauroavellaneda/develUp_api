@@ -1,5 +1,5 @@
 RSpec.describe "GET /api/users", type: :request do
-  let!(:develuper) { create(:develuper) }
+  let(:develuper) { create(:develuper) }
   let(:credentials) { develuper.create_new_auth_token }
   let(:headers) { { HTTP_ACCEPT: "application/json" }.merge!(credentials) }
 

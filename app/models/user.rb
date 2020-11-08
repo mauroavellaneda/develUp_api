@@ -5,22 +5,22 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   include DeviseTokenAuth::Concerns::User
-  # validates_presence_of :role, :company_name, :company_url, if: :selected_role?
 
-  with_options :if => lambda { |user| user.role == "develuper" } do |develuper|
-    develuper.validates_presence_of :name
-    develuper.validates_presence_of :email
-    develuper.validates_presence_of :skills
-    develuper.validates_presence_of :points
-    develuper.validates_presence_of :level
-    develuper.validates_presence_of :completed_projects
-  end
+  validates_presence_of :company_name, :company_url, if: :client?
+  validates_presence_of :name, :skills, :level, :points, :completed_projects, if: :develuper?
 
-  with_options :if => lambda { |user| user.role == "client" } do |client|
-    client.validates_presence_of :company_name
-    client.validates_presence_of :company_url
-  end
+  validates_presence_of :role
 
   enum role: [:client, :develuper]
   has_many :assignments, foreign_key: "client_id", class_name: "Assignment"
+
+  private
+
+  def develuper?
+    role == "develuper"
+  end
+
+  def client?
+    role == "client"
+  end
 end

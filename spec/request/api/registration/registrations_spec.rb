@@ -94,7 +94,57 @@ RSpec.describe "POST /api/sign_up", type: :request do
     end
   end
 
-  describe "Unsuccesfuly register -with blank company_name, company_url and role" do
+  describe "Unsuccesfuly client registration -with blank company_name, company_url" do
+    before do
+      post "/api/auth",
+           params: {
+             email: "client@mail.com",
+             password: "password",
+             password_confirmation: "password",
+             role: "client",
+           },
+           headers: headers
+    end
+
+    it "responds with unprocessable entity status" do
+      expect(response).to have_http_status :unprocessable_entity
+    end
+
+    it "returns a unsuccesfully message if company name is blank" do
+      expect(response_json["errors"]["full_messages"][0]).to eq "Company name can't be blank"
+    end
+
+    it "returns a unsuccesfully message if company url is blank" do
+      expect(response_json["errors"]["full_messages"][1]).to eq "Company url can't be blank"
+    end
+  end
+
+  describe "Unsuccesfuly develuper registration -with blank name and blank skills" do
+    before do
+      post "/api/auth",
+           params: {
+             email: "client@mail.com",
+             password: "password",
+             password_confirmation: "password",
+             role: "develuper",
+           },
+           headers: headers
+    end
+
+    it "responds with unprocessable entity status" do
+      expect(response).to have_http_status :unprocessable_entity
+    end
+
+    it "returns a unsuccesfully message if name is blank" do
+      expect(response_json["errors"]["full_messages"][0]).to eq "Name can't be blank"
+    end
+
+    it "returns a unsuccesfully message if skills is blank" do
+      expect(response_json["errors"]["full_messages"][1]).to eq "Skills can't be blank"
+    end
+  end
+
+  describe "Unsuccesfuly registration -with blank role" do
     before do
       post "/api/auth",
            params: {
@@ -109,14 +159,8 @@ RSpec.describe "POST /api/sign_up", type: :request do
       expect(response).to have_http_status :unprocessable_entity
     end
 
-    it "returns a unsuccesfully message if role is blank" do
-      expect(response_json["errors"]["full_messages"][0]).to eq "Role can't be blank"
-    end
     it "returns a unsuccesfully message if company name is blank" do
-      expect(response_json["errors"]["full_messages"][1]).to eq "Company name can't be blank"
-    end
-    it "returns a unsuccesfully message if company url is blank" do
-      expect(response_json["errors"]["full_messages"][2]).to eq "Company url can't be blank"
+      expect(response_json["errors"]["full_messages"][0]).to eq "Role can't be blank"
     end
   end
 end
