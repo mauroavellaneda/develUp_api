@@ -28,13 +28,29 @@ class Api::AssignmentsController < ApplicationController
   end
 
   def update
-    
+    assignment = Assignment.find(params[:id])
+    # assignment2 = Assignment.update(assignments_params)
+    if assignment.applicants.include?(User.last.id)
+      binding.pry
+    #   assignment2 = Assignment.update(assignments_params)
+    #   binding.pry
+     else
+      # assignment.applicants_will_change!
+      assignment.applicants.push(User.last.id)
+      # assignment2 = Assignment.update(assignments_params)
+      binding.pry
+      # save
+     end
+
+  
+
+
   end
 
   private
 
   def assignments_params
-    params.require(:assignment).permit(:title, :points, :budget, :description, :timeframe, :skills => [])
+    params.require(:assignment).permit(:title, :points, :budget, :description, :timeframe, :skills => [], :applicants => [] )
   end
 
   def role_client?
