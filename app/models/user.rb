@@ -5,7 +5,33 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   include DeviseTokenAuth::Concerns::User
-  validates_presence_of :role, :company_name, :company_url
-  enum role: [:client]
+
+  DEFAULT_SKILLS = ["Javascript",
+                    "Ruby",
+                    "HTML-CSS",
+                    "Node JS",
+                    "React",
+                    "Angular",
+                    "React Native",
+                    "Fullstack"]
+
+  validates_intersection_of :skills, in: DEFAULT_SKILLS, message: "Invalid skill"
+
+  validates_presence_of :company_name, :company_url, if: :client?
+  validates_presence_of :name, :skills, :level, :points, :completed_projects, if: :develuper?
+
+  validates_presence_of :role
+
+  enum role: [:client, :develuper]
   has_many :assignments, foreign_key: "client_id", class_name: "Assignment"
+
+  private
+
+  def develuper?
+    role == "develuper"
+  end
+
+  def client?
+    role == "client"
+  end
 end

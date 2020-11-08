@@ -1,6 +1,6 @@
 RSpec.describe "GET /api/assignments", type: :request do
-  let(:user) { create(:user, role: "client") }
-  let(:credentials) { user.create_new_auth_token }
+  let(:client) { create(:client) }
+  let(:credentials) { client.create_new_auth_token }
   let(:assignment) { create(:assignment) }
   let(:headers) { { HTTP_ACCEPT: "application/json" }.merge!(credentials) }
   describe "visitor can see specific assignments" do

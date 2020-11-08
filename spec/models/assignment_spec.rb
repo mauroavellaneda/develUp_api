@@ -21,7 +21,7 @@ RSpec.describe Assignment, type: :model do
     it { is_expected.to validate_presence_of :budget }
     it { is_expected.to validate_presence_of :description }
     it { is_expected.to validate_presence_of :timeframe }
-    it { is_expected.to_not allow_value(["Rubbish", "Invalid skill"]).for(:skills) }
+    it { is_expected.not_to  allow_value(["Rubbish", "Invalid skill"]).for(:skills) }
     it { is_expected.to allow_value(["Javascript", "Ruby"]).for(:skills) }
   end
 end

@@ -5,6 +5,6 @@ FactoryBot.define do
     points { 320 }
     budget { 500 }
     description { "MyText"}
-    association :client, factory: :user
+    association :client, factory: :client
   end
 end
