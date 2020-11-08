@@ -1,5 +1,5 @@
 class Api::AssignmentsController < ApplicationController
-  before_action :authenticate_user!, only: %i[create show]
+  before_action :authenticate_user!, only: %i[create show update]
   before_action :role_client?, only: [:create]
 
   def index

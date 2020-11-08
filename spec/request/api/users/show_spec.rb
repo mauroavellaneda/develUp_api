@@ -10,6 +10,9 @@ RSpec.describe "GET /api/users", type: :request do
           headers: headers
     end
 
+    it "returns a specific user email" do
+      expect(response_json["user"]["email"]).to eq "develuper#{develuper.id}@mail.com"
+    end
     it "responds with ok status" do
       expect(response).to have_http_status :ok
     end
@@ -18,9 +21,6 @@ RSpec.describe "GET /api/users", type: :request do
       expect(response_json["user"]["name"]).to eq "MyName"
     end
 
-    it "returns a specific user email" do
-      expect(response_json["user"]["email"]).to eq "mail@mail.com"
-    end
 
     it "returns a specific user level" do
       expect(response_json["user"]["level"]).to eq 0

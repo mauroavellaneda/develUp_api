@@ -9,13 +9,14 @@ RSpec.describe "PUT /api/assignments", type: :request do
     before do
       put "/api/assignments/#{assignment.id}",
           params: {
-            assignment: { applicants: ["#{develuper.id}"] },
+            assignment: { applicants: "#{develuper.id}" },
           }, headers: headers
     end
+
     before do
       put "/api/assignments/#{assignment.id}",
           params: {
-            assignment: { applicants: ["#{develuper2.id}"] },
+            assignment: { applicants: "#{develuper2.id}" },
           }, headers: headers
     end
 
@@ -29,7 +30,29 @@ RSpec.describe "PUT /api/assignments", type: :request do
 
     it "updates an assignment with applicants" do
       assignment = Assignment.last
-      expect(assignment.applicants).to eq  ["#{develuper.id}, #{develuper2.id}"]
+      expect(assignment.applicants).to eq "[#{develuper.id}, #{develuper2.id}]"
+    end
+  end
+
+  describe "unsuccessfully - develUper already applied to assignment" do
+    before do
+      put "/api/assignments/#{assignment.id}",
+          params: {
+            assignment: { applicants: "#{develuper.id}" },
+          }, headers: headers
+    end
+    before do
+      put "/api/assignments/#{assignment.id}",
+          params: {
+            assignment: { applicants: "#{develuper.id}" },
+          }, headers: headers
+    end
+    it "responds with unprocessable_entity" do
+      expect(response).to have_http_status :unprocessable_entity
+    end
+
+    it "returns success message" do
+      expect(response_json["message"]).to eq "You already applied to this assignment"
     end
   end
 end
