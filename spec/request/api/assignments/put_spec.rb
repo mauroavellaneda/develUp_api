@@ -6,9 +6,9 @@ RSpec.describe 'PUT /api/assignments', type: :request do
 
   describe 'develUper successfully apply to assignment' do
     before do
-      put "/api/assignments#{assignment.id}",
+      put "/api/assignments/#{assignment.id}",
           params: {
-            applicant: "#{develuper.id}"
+            applicants: "#{develuper.id}"
           }, headers: headers
     end
 
@@ -22,7 +22,7 @@ RSpec.describe 'PUT /api/assignments', type: :request do
 
     it 'updates an assignment with applicants' do
       assignment = Assignment.last
-      expect(assignment.applicant).to eq "#{develuper.id}"
+      expect(assignment.applicants).to eq "#{develuper.id}"
     end
   end
 end

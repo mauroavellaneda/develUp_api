@@ -27,6 +27,10 @@ class Api::AssignmentsController < ApplicationController
     end
   end
 
+  def update
+    
+  end
+
   private
 
   def assignments_params
