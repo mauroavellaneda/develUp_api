@@ -12,5 +12,4 @@ class Assignment < ApplicationRecord
 
   validates_presence_of :title, :points, :budget, :description, :timeframe, :skills
   belongs_to :client, class_name: "User"
-  has_many :depeluper, class_name: "User"
 end

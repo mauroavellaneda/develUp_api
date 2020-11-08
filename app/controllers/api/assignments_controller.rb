@@ -30,6 +30,8 @@ class Api::AssignmentsController < ApplicationController
       render json: { message: 'You already applied to this assignment' }, status: :unprocessable_entity
     else
       assignment.applicants.push(User.last.id)
+      assignment.save!
+      render json: { message: 'successfully applied' }, status: :ok
     end
   end
 
