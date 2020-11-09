@@ -22,7 +22,7 @@ RSpec.describe 'PUT /api/assignments', type: :request do
 
     it 'updates an assignment with applicants' do
       assignment = Assignment.last
-      expect(assignment.applicants).to eq [develuper.id]
+      expect(assignment.applicants).to eq [1, 2, develuper.id]
     end
   end
 
