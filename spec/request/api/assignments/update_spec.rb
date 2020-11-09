@@ -1,22 +1,14 @@
 RSpec.describe 'PUT /api/assignments', type: :request do
+  let(:assignment) { create(:assignment) }
   let(:develuper) { create(:develuper) }
-  let(:develuper2) { create(:develuper) }
   let(:credentials) { develuper.create_new_auth_token }
   let(:headers) { { HTTP_ACCEPT: 'application/json' }.merge!(credentials) }
-  let(:assignment) { create(:assignment) }
 
   describe 'develUper successfully apply to assignment' do
     before do
       put "/api/assignments/#{assignment.id}",
           params: {
             assignment: { applicants: develuper.id.to_s }
-          }, headers: headers
-    end
-
-    before do
-      put "/api/assignments/#{assignment.id}",
-          params: {
-            assignment: { applicants: develuper2.id.to_s }
           }, headers: headers
     end
 
@@ -30,7 +22,7 @@ RSpec.describe 'PUT /api/assignments', type: :request do
 
     it 'updates an assignment with applicants' do
       assignment = Assignment.last
-      expect(assignment.applicants).to eq [develuper.id, develuper2.id]
+      expect(assignment.applicants).to eq [develuper.id]
     end
   end
 
@@ -51,7 +43,7 @@ RSpec.describe 'PUT /api/assignments', type: :request do
       expect(response).to have_http_status :unprocessable_entity
     end
 
-    it 'returns success message' do
+    it 'returns error message' do
       expect(response_json['message']).to eq 'You already applied to this assignment'
     end
   end

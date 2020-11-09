@@ -9,7 +9,6 @@ class Api::AssignmentsController < ApplicationController
 
   def create
     assignment = current_user.assignments.create(assignments_params)
-
     if assignment.persisted?
       render json: { message: 'successfully saved' }
     else
@@ -26,10 +25,10 @@ class Api::AssignmentsController < ApplicationController
 
   def update
     assignment = Assignment.find(params[:id])
-    if assignment.applicants.include?(User.last.id)
+    if assignment.applicants.include?(current_user.id)
       render json: { message: 'You already applied to this assignment' }, status: :unprocessable_entity
     else
-      assignment.applicants.push(User.last.id)
+      assignment.applicants.push(current_user.id)
       assignment.save!
       render json: { message: 'successfully applied' }, status: :ok
     end
