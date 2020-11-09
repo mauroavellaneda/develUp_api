@@ -12,7 +12,7 @@ RSpec.describe 'PUT /api/assignments', type: :request do
           }, headers: headers
     end
 
-    it 'responds with create status' do
+    it 'responds with ok status' do
       expect(response).to have_http_status :ok
     end
 
