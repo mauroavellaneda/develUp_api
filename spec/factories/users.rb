@@ -13,7 +13,6 @@ FactoryBot.define do
       name { "MyName" }
       skills { ["Javascript", "Ruby"] }
       points { 320 }
-      email { "mail@mail.com" }
     end
   end
 end

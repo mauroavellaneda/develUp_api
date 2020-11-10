@@ -18,9 +18,6 @@ RSpec.describe "GET /api/users", type: :request do
       expect(response_json["user"]["name"]).to eq "MyName"
     end
 
-    it "returns a specific user email" do
-      expect(response_json["user"]["email"]).to eq "mail@mail.com"
-    end
 
     it "returns a specific user level" do
       expect(response_json["user"]["level"]).to eq 0
