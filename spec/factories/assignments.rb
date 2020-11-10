@@ -7,5 +7,6 @@ FactoryBot.define do
     description { 'MyText' }
     association :client, factory: :client
     applicants {[1, 2]}
+    status { "published"}
   end
 end
