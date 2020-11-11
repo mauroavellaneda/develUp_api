@@ -23,14 +23,20 @@ RSpec.describe "GET /api/assignments", type: :request do
     it "returns a specific assignment budget" do
       expect(response_json["assignment"]["budget"]).to eq 500
     end
-    it "returns a specific assignment poins" do
+    it "returns a specific assignment points" do
       expect(response_json["assignment"]["points"]).to eq 320
     end
     it "returns applicants for specific assignment" do
       expect(response_json["assignment"]["applicants"]).to eq [1, 2]
     end
-    
+    it "returns a specific assignment status" do
+      expect(response_json["assignment"]["status"]).to eq "published"
+    end
+    it "returns a specific assignment status" do
+      expect(response_json["assignment"]["selected"]).to eq 45
+    end
   end
+  
   describe "request with wrond id fails" do
     before do
       get "/api/assignments/wrongId",

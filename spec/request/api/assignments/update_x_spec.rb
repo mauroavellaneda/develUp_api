@@ -14,13 +14,16 @@ RSpec.describe "PUT /api/assignments", type: :request do
             },
           }, headers: headers
     end
+    
     it "responds with ok status" do
       expect(response).to have_http_status :ok
     end
     it "returns selected develuper id" do
+      assignment = Assignment.last
       expect(assignment.selected).to eq 2
     end
     it "updates assignments status" do
+      assignment = Assignment.last
       expect(assignment.status).to eq "ongoing"
     end
   end
