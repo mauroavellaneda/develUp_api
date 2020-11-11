@@ -26,5 +26,28 @@ RSpec.describe "PUT /api/assignments", type: :request do
       assignment = Assignment.last
       expect(assignment.status).to eq "ongoing"
     end
+    it "returns success message" do
+      expect(response_json["message"]).to eq "successfully selected"
+    end 
+  end
+
+  describe "unsuccessfully - " do
+    before do
+      put "/api/assignments/#{assignment.id}",
+      params: {
+        assignment: {
+          selected: 2,
+          status: "ongoing",
+        },
+      }, headers: headers
+    end
+  
+    it "responds with unprocessable_entity" do
+      expect(response).to have_http_status :unprocessable_entity
+    end
+
+    it "returns error message" do
+      expect(response_json["message"]).to eq "You already selected a develUper to this assignment"
+    end
   end
 end

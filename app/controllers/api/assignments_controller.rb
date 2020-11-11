@@ -34,13 +34,11 @@ class Api::AssignmentsController < ApplicationController
         render json: { message: "successfully applied" }, status: :ok
       end
     else
-      # assignment.update(params)
+      
       if assignment.update(update_params)
-        attributes = { selected: params[:assignment][:selected], status: params[:assignment][:status] }
-        assignment.assign_attributes(attributes)
-        assignment.save!
-        # binding.pry
-        render json: { message: "successfully applied" }, status: :ok
+        render json: { message: "successfully selected" }, status: :ok
+      elsif assignment.status == "ongoing"
+        render json: { message: 'You already selected a develUper to this assignment' }, status: :unprocessable_entity
       end
     end
   end
