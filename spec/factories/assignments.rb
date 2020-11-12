@@ -8,6 +8,5 @@ FactoryBot.define do
     association :client, factory: :client
     applicants { [1, 2] }
     status { "published" }
-    selected { 45 }
   end
 end

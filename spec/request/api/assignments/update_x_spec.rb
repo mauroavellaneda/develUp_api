@@ -1,5 +1,5 @@
 RSpec.describe "PUT /api/assignments", type: :request do
-  let(:develUper) {create(:develuper)}
+  # let(:develUper) {create(:develuper)}
   let(:client) { create(:client) }
   let(:credentials) { client.create_new_auth_token }
   let(:headers) { { HTTP_ACCEPT: "application/json" }.merge!(credentials) }
@@ -10,7 +10,7 @@ RSpec.describe "PUT /api/assignments", type: :request do
       put "/api/assignments/#{assignment.id}",
           params: {
             assignment: {
-              selected: develUper.id,
+              selected: 2,
               status: "ongoing",
             },
           }, headers: headers
@@ -21,7 +21,7 @@ RSpec.describe "PUT /api/assignments", type: :request do
     it "returns selected develuper id" do
       assignment= Assignment.last
       develUper = User.last
-      expect(assignment.selected).to eq develUper.id
+      expect(assignment.selected).to eq 2
     end
     it "updates assignments status" do
       expect(assignment.status).to eq "ongoing"

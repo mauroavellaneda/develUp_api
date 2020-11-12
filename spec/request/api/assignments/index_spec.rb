@@ -37,18 +37,17 @@ RSpec.describe "GET /api/assignments", type: :request do
 end
 
 RSpec.describe "GET /api/assignments", type: :request do
-  let(:client) { create(:client) }
-  let(:credentials) { client.create_new_auth_token }
-  let(:headers) { { HTTP_ACCEPT: 'application/json' }.merge!(credentials) }
-  let(:assignment) do
+  let!(:client) { create(:client) }
+  let!(:credentials) { client.create_new_auth_token }
+  let!(:headers) { { HTTP_ACCEPT: "application/json" }.merge!(credentials) }
+  let!(:assignment) do
     3.times do
-     create(:assignment, client_id: client.id) 
+      create(:assignment, client_id: client.id)
     end
   end
   describe "successfully for client" do
     before do
-      get "/api/assignments", params: {client_id: client.id}
-    
+      get "/api/assignments", params: { client_id: client.id }
     end
 
     it "responds with ok status" do
@@ -56,7 +55,7 @@ RSpec.describe "GET /api/assignments", type: :request do
     end
 
     it "returns 3 assignments" do
-      assignments = Assignment.all 
+      assignments = Assignment.all
       expect(response_json["assignments"].count).to eq 3
     end
   end

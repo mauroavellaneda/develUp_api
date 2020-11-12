@@ -4,7 +4,6 @@ class Api::AssignmentsController < ApplicationController
 
   def index
     assignments = if client_index?
-      binding.pry
                     Assignment.where(client_id: params['client_id'])
                   else
                     Assignment.all
@@ -46,7 +45,7 @@ class Api::AssignmentsController < ApplicationController
     #   # # assignment.update!(selected: assignment.selected)
     #   # # assignment.update!(status: params[:status])
     #   # end
-    # end
+    # end 
 
     case current_user.role
     when "develuper"
@@ -83,11 +82,12 @@ class Api::AssignmentsController < ApplicationController
   end
 
   def client_update(assignment)
-    assignment.selected ? (render json: { message: "You already choose a develuper" }, status: :unprocessable_entity) :
+    assignment.selected ? (render json: { message: "You already selected a develUper to this assignment" }, status: :unprocessable_entity) :
       (assignment.update!(update_params)
-      develuper = User.find(id: assignment.selected)
-      ongoing_assignment.update(params[:assignment.id])
-      render json: { message: "successfully applied" }, status: :ok)
+      # develuper = User.find(id: assignment.selected)
+
+      # ongoing_assignment.update(params[:assignment.id])
+      render json: { message: "successfully selected" }, status: :ok)
   end
 
   def update_params
