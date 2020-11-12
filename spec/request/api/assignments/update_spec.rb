@@ -20,7 +20,7 @@ RSpec.describe 'PUT /api/assignments', type: :request do
       expect(response_json['message']).to eq 'successfully applied'
     end
 
-    it 'updates an assignment with applicants' do
+    it 'returns updated assignment with applicants ids' do
       assignment = Assignment.last
       expect(assignment.applicants).to eq [1, 2, develuper.id]
     end
@@ -73,7 +73,7 @@ RSpec.describe 'PUT /api/assignments', type: :request do
       assignment = Assignment.last
       expect(assignment.selected).to eq 2
     end
-    it 'updates assignments status' do
+    it 'returns updated assignments status' do
       assignment = Assignment.last
       expect(assignment.status).to eq 'ongoing'
     end

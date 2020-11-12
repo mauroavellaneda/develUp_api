@@ -48,7 +48,7 @@ RSpec.describe 'GET /api/users', type: :request do
       expect(response).to have_http_status :not_found
     end
 
-    it 'is expected to return with error message' do
+    it 'returns error message' do
       expect(response_json['error_message']).to eq 'Sorry, user does not exist'
     end
   end
@@ -58,11 +58,11 @@ RSpec.describe 'GET /api/users', type: :request do
       get "/api/users/#{develuper.id}"
     end
 
-    it 'is expected to return unauthozired response status' do
+    it 'returns unauthozired response status' do
       expect(response).to have_http_status :unauthorized
     end
 
-    it 'is expected to return error message' do
+    it 'returns error message' do
       expect(response_json['errors'][0]).to eq 'You need to sign in or sign up before continuing.'
     end
   end

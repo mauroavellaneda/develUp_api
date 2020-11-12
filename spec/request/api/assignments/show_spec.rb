@@ -37,7 +37,7 @@ RSpec.describe "GET /api/assignments", type: :request do
     end
   end
   
-  describe "request with wrond id fails" do
+  describe "request with wrong id fails" do
     before do
       get "/api/assignments/wrongId",
           headers: headers
@@ -45,18 +45,19 @@ RSpec.describe "GET /api/assignments", type: :request do
     it "responds with not found status" do
       expect(response).to have_http_status :not_found
     end
-    it "is expected to return with error message" do
+    it "returns error message" do
       expect(response_json["error_message"]).to eq "Sorry, that assignment does not exist"
     end
   end
+
   describe "visitor can't see specific assignment" do
     before do
       get "/api/assignments/#{assignment.id}"
     end
-    it "is expected to return unauthozired response status" do
+    it "returns unauthozired response status" do
       expect(response).to have_http_status :unauthorized
     end
-    it "is expected to return error message" do
+    it "returns error message" do
       expect(response_json["errors"][0]).to eq "You need to sign in or sign up before continuing."
     end
   end
