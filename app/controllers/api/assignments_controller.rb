@@ -29,24 +29,6 @@ class Api::AssignmentsController < ApplicationController
 
   def update
     assignment = Assignment.find(params[:id])
-    # if current_user.role == "develuper"
-    #   if assignment.applicants.include?(current_user.id)
-    #     render json: { message: "You already applied to this assignment" }, status: :unprocessable_entity
-    #   else
-    #     assignment.applicants.push(current_user.id)
-    #     assignment.save!
-    #     render json: { message: "successfully applied" }, status: :ok
-    #   end
-    # else
-    #   assignment.update!(update_params)
-    #   render json: { message: "successfully applied" }, status: :ok
-    #   # if assignment.update(update_params)
-    #   # attributes = { selected: assignment.selected, status: assignment.status }
-    #   # # assignment.update!(selected: assignment.selected)
-    #   # # assignment.update!(status: params[:status])
-    #   # end
-    # end
-
     case current_user.role
     when "develuper"
       develuper_update(assignment)
@@ -84,10 +66,6 @@ class Api::AssignmentsController < ApplicationController
   def client_update(assignment)
     assignment.selected ? (render json: { message: "You already selected a develUper to this assignment" }, status: :unprocessable_entity) :
       (assignment.update!(update_params)
-      develuper = User.where(id: assignment.selected)
-      
- # (develuper[0].ongoing_assignment).update!(assignment.id)
-      develuper.update!(ongoing_assignment: assignment.id)
       render json: { message: "successfully selected" }, status: :ok)
   end
 

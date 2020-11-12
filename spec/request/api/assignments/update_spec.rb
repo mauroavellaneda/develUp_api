@@ -108,7 +108,6 @@ RSpec.describe 'PUT /api/assignments', type: :request do
     end
 
     it 'returns error message' do
-
       expect(response_json['message']).to eq 'You already selected a develUper to this assignment'
     end
   end
