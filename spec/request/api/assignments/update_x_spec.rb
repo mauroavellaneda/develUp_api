@@ -41,6 +41,15 @@ RSpec.describe "PUT /api/assignments", type: :request do
         },
       }, headers: headers
     end
+    before do
+      put "/api/assignments/#{assignment.id}",
+      params: {
+        assignment: {
+          selected: 2,
+          status: "ongoing",
+        },
+      }, headers: headers
+    end
   
     it "responds with unprocessable_entity" do
       expect(response).to have_http_status :unprocessable_entity

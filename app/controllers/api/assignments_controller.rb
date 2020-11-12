@@ -10,7 +10,7 @@ class Api::AssignmentsController < ApplicationController
   def create
     assignment = current_user.assignments.create(assignments_params)
     if assignment.persisted?
-      render json: { message: "successfully saved" }
+      render json: { message: 'successfully saved' }
     else
       error_message(assignment.errors)
     end
@@ -20,25 +20,24 @@ class Api::AssignmentsController < ApplicationController
     assignment = Assignment.find(params[:id])
     render json: assignment, serializer: AssignmentsShowSerializer
   rescue StandardError => e
-    render json: { error_message: "Sorry, that assignment does not exist" }, status: :not_found
+    render json: { error_message: 'Sorry, that assignment does not exist' }, status: :not_found
   end
 
   def update
     assignment = Assignment.find(params[:id])
-    if current_user.role == "develuper"
+    if current_user.role == 'develuper'
       if assignment.applicants.include?(current_user.id)
-        render json: { message: "You already applied to this assignment" }, status: :unprocessable_entity
+        render json: { message: 'You already applied to this assignment' }, status: :unprocessable_entity
       else
         assignment.applicants.push(current_user.id)
         assignment.save!
-        render json: { message: "successfully applied" }, status: :ok
+        render json: { message: 'successfully applied' }, status: :ok
       end
     else
-      
-      if assignment.update(update_params)
-        render json: { message: "successfully selected" }, status: :ok
-      elsif assignment.status == "ongoing"
+      if assignment.status == 'ongoing'
         render json: { message: 'You already selected a develUper to this assignment' }, status: :unprocessable_entity
+      else assignment.update(update_params)
+           render json: { message: 'successfully selected' }, status: :ok
       end
     end
   end
@@ -50,7 +49,7 @@ class Api::AssignmentsController < ApplicationController
   end
 
   def role_client?
-    restrict_access unless current_user.role == "client"
+    restrict_access unless current_user.role == 'client'
   end
 
   def restrict_access
