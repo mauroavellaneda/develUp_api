@@ -1,8 +1,8 @@
 RSpec.describe 'PUT /api/assignments', type: :request do
-  let(:assignment) { create(:assignment) }
-  let(:credentials) { develuper.create_new_auth_token }
-  let(:develuper) { create(:develuper) }
-  let(:headers) { { HTTP_ACCEPT: 'application/json' }.merge!(credentials) }
+  let!(:assignment) { create(:assignment) }
+  let!(:credentials) { develuper.create_new_auth_token }
+  let!(:develuper) { create(:develuper) }
+  let!(:headers) { { HTTP_ACCEPT: 'application/json' }.merge!(credentials) }
 
   describe 'develUper can successfully apply to assignment' do
     before do
@@ -50,17 +50,18 @@ RSpec.describe 'PUT /api/assignments', type: :request do
 end
 
 RSpec.describe 'PUT /api/assignments', type: :request do
-  let(:client) { create(:client) }
-  let(:credentials) { client.create_new_auth_token }
-  let(:headers) { { HTTP_ACCEPT: 'application/json' }.merge!(credentials) }
-  let(:assignment) { create(:assignment, client_id: client.id) }
+  let!(:client) { create(:client) }
+  let!(:develuper) { create(:develuper) }
+  let!(:credentials) { client.create_new_auth_token }
+  let!(:headers) { { HTTP_ACCEPT: 'application/json' }.merge!(credentials) }
+  let!(:assignment) { create(:assignment, client_id: client.id) }
 
   describe 'Client successfully select one develUper to assignment' do
     before do
       put "/api/assignments/#{assignment.id}",
           params: {
             assignment: {
-              selected: 2,
+              selected: develuper.id,
               status: 'ongoing'
             }
           }, headers: headers
@@ -71,7 +72,7 @@ RSpec.describe 'PUT /api/assignments', type: :request do
     end
     it 'returns selected develuper id' do
       assignment = Assignment.last
-      expect(assignment.selected).to eq 2
+      expect(assignment.selected).to eq develuper.id
     end
     it 'returns updated assignments status' do
       assignment = Assignment.last
@@ -87,7 +88,7 @@ RSpec.describe 'PUT /api/assignments', type: :request do
       put "/api/assignments/#{assignment.id}",
           params: {
             assignment: {
-              selected: 2,
+              selected: develuper.id,
               status: 'ongoing'
             }
           }, headers: headers
@@ -96,7 +97,7 @@ RSpec.describe 'PUT /api/assignments', type: :request do
       put "/api/assignments/#{assignment.id}",
           params: {
             assignment: {
-              selected: 2,
+              selected: develuper.id,
               status: 'ongoing'
             }
           }, headers: headers
@@ -107,6 +108,7 @@ RSpec.describe 'PUT /api/assignments', type: :request do
     end
 
     it 'returns error message' do
+
       expect(response_json['message']).to eq 'You already selected a develUper to this assignment'
     end
   end

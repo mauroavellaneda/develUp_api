@@ -13,7 +13,6 @@ FactoryBot.define do
       name { "MyName" }
       skills { ["Javascript", "Ruby"] }
       points { 320 }
-      ongoing_assignment { 1 }
     end
   end
 end

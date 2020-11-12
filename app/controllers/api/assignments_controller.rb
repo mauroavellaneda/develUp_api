@@ -4,17 +4,17 @@ class Api::AssignmentsController < ApplicationController
 
   def index
     assignments = if client_index?
-                    Assignment.where(client_id: params['client_id'])
-                  else
-                    Assignment.all
-                  end
+        Assignment.where(client_id: params["client_id"])
+      else
+        Assignment.all
+      end
     render json: assignments, each_serializer: AssignmentsIndexSerializer
   end
 
   def create
     assignment = current_user.assignments.create(assignments_params)
     if assignment.persisted?
-      render json: { message: 'successfully saved' }
+      render json: { message: "successfully saved" }
     else
       error_message(assignment.errors)
     end
@@ -24,7 +24,7 @@ class Api::AssignmentsController < ApplicationController
     assignment = Assignment.find(params[:id])
     render json: assignment, serializer: AssignmentsShowSerializer
   rescue StandardError => e
-    render json: { error_message: 'Sorry, that assignment does not exist' }, status: :not_found
+    render json: { error_message: "Sorry, that assignment does not exist" }, status: :not_found
   end
 
   def update
@@ -45,7 +45,7 @@ class Api::AssignmentsController < ApplicationController
     #   # # assignment.update!(selected: assignment.selected)
     #   # # assignment.update!(status: params[:status])
     #   # end
-    # end 
+    # end
 
     case current_user.role
     when "develuper"
@@ -58,7 +58,7 @@ class Api::AssignmentsController < ApplicationController
   private
 
   def client_index?
-    !params['client_id'].nil?
+    !params["client_id"].nil?
   end
 
   def assignments_params
@@ -66,7 +66,7 @@ class Api::AssignmentsController < ApplicationController
   end
 
   def role_client?
-    restrict_access unless current_user.role == 'client'
+    restrict_access unless current_user.role == "client"
   end
 
   def restrict_access
@@ -84,9 +84,10 @@ class Api::AssignmentsController < ApplicationController
   def client_update(assignment)
     assignment.selected ? (render json: { message: "You already selected a develUper to this assignment" }, status: :unprocessable_entity) :
       (assignment.update!(update_params)
-      # develuper = User.find(id: assignment.selected)
-
-      # ongoing_assignment.update(params[:assignment.id])
+      develuper = User.where(id: assignment.selected)
+      
+ # (develuper[0].ongoing_assignment).update!(assignment.id)
+      develuper.update!(ongoing_assignment: assignment.id)
       render json: { message: "successfully selected" }, status: :ok)
   end
 
