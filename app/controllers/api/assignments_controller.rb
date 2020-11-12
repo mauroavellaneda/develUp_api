@@ -3,14 +3,19 @@ class Api::AssignmentsController < ApplicationController
   before_action :role_client?, only: [:create]
 
   def index
-    assignments = Assignment.all
+    assignments = if client_index?
+      binding.pry
+                    Assignment.where(client_id: params['client_id'])
+                  else
+                    Assignment.all
+                  end
     render json: assignments, each_serializer: AssignmentsIndexSerializer
   end
 
   def create
     assignment = current_user.assignments.create(assignments_params)
     if assignment.persisted?
-      render json: { message: "successfully saved" }
+      render json: { message: 'successfully saved' }
     else
       error_message(assignment.errors)
     end
@@ -20,7 +25,7 @@ class Api::AssignmentsController < ApplicationController
     assignment = Assignment.find(params[:id])
     render json: assignment, serializer: AssignmentsShowSerializer
   rescue StandardError => e
-    render json: { error_message: "Sorry, that assignment does not exist" }, status: :not_found
+    render json: { error_message: 'Sorry, that assignment does not exist' }, status: :not_found
   end
 
   def update
@@ -53,12 +58,16 @@ class Api::AssignmentsController < ApplicationController
 
   private
 
+  def client_index?
+    !params['client_id'].nil?
+  end
+
   def assignments_params
     params.require(:assignment).permit(:title, :points, :budget, :description, :timeframe, skills: [], applicants: [])
   end
 
   def role_client?
-    restrict_access unless current_user.role == "client"
+    restrict_access unless current_user.role == 'client'
   end
 
   def restrict_access
