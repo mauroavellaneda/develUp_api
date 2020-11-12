@@ -3,7 +3,12 @@ class Api::AssignmentsController < ApplicationController
   before_action :role_client?, only: [:create]
 
   def index
-    assignments = Assignment.all
+    assignments = if client_index?
+      binding.pry
+                    Assignment.where(client_id: params['client_id'])
+                  else
+                    Assignment.all
+                  end
     render json: assignments, each_serializer: AssignmentsIndexSerializer
   end
 
@@ -43,6 +48,10 @@ class Api::AssignmentsController < ApplicationController
   end
 
   private
+
+  def client_index?
+    !params['client_id'].nil?
+  end
 
   def assignments_params
     params.require(:assignment).permit(:title, :points, :budget, :description, :timeframe, skills: [], applicants: [])

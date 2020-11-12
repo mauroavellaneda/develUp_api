@@ -15,6 +15,7 @@ assignment2 = Assignment.create(
   description: "I need to design a cool website with some Animation graphics and video. The New company is a PPE manufacturer and distributor. We will sell direct to the public.",
   client_id: client2.id,
   timeframe: 25,
+  status: "published"
 )
 assignment1 = Assignment.create(
   title: "Dedicated React Developer",
@@ -24,6 +25,7 @@ assignment1 = Assignment.create(
   description: "We are looking for talented React developer with 3 years of experience who can work for at least 6 months for the project. We will give the candidate the small test assignment (we will pay for the hours he spent for the test assignment), and consider who to work with.",
   client_id: client.id,
   timeframe: 70,
+  status: "published"
 )
 assignment3 = Assignment.create(
   title: "Build an API",
@@ -33,6 +35,7 @@ assignment3 = Assignment.create(
   description: "I need to design a cool website with some Animation graphics and video. The New company is a PPE manufacturer and distributor. We will sell direct to the public.",
   client_id: client3.id,
   timeframe: 25,
+  status: "published"
 )
 assignment4 = Assignment.create(
   title: "Build a Native App",
@@ -42,6 +45,7 @@ assignment4 = Assignment.create(
   description: "I need to design a cool website with some Animation graphics and video. The New company is a PPE manufacturer and distributor. We will sell direct to the public.",
   client_id: client.id,
   timeframe: 25,
+  status: "published"
 )
 assignment5 = Assignment.create(
   title: "Build a Home page",
@@ -51,6 +55,7 @@ assignment5 = Assignment.create(
   description: "I need to design a cool website with some Animation graphics and video. The New company is a PPE manufacturer and distributor. We will sell direct to the public.",
   client_id: client.id,
   timeframe: 25,
+  status: "published"
 )
 assignment2 = Assignment.create(
   title: "Build a responsive Web page",
@@ -60,6 +65,7 @@ assignment2 = Assignment.create(
   description: "I need to design a cool website with some Animation graphics and video. The New company is a PPE manufacturer and distributor. We will sell direct to the public.",
   client_id: client2.id,
   timeframe: 25,
+  status: "published"
 )
 assignment1 = Assignment.create(
   title: "Awesome React Developer",
@@ -69,6 +75,7 @@ assignment1 = Assignment.create(
   description: "We are looking for talented React developer with 3 years of experience who can work for at least 6 months for the project. We will give the candidate the small test assignment (we will pay for the hours he spent for the test assignment), and consider who to work with.",
   client_id: client.id,
   timeframe: 70,
+  status: "published"
 )
 assignment3 = Assignment.create(
   title: "Build an REST API",
@@ -78,6 +85,7 @@ assignment3 = Assignment.create(
   description: "I need to design a cool website with some Animation graphics and video. The New company is a PPE manufacturer and distributor. We will sell direct to the public.",
   client_id: client3.id,
   timeframe: 25,
+  status: "published"
 )
 assignment4 = Assignment.create(
   title: "Build a Home page 2",
@@ -87,6 +95,7 @@ assignment4 = Assignment.create(
   description: "I need to design a cool website with some Animation graphics and video. The New company is a PPE manufacturer and distributor. We will sell direct to the public.",
   client_id: client.id,
   timeframe: 25,
+  status: "published"
 )
 assignment5 = Assignment.create(
   title: "Build a Home page 3",
@@ -96,6 +105,7 @@ assignment5 = Assignment.create(
   description: "I need to design a cool website with some Animation graphics and video. The New company is a PPE manufacturer and distributor. We will sell direct to the public.",
   client_id: client.id,
   timeframe: 25,
+  status: "published"
 )
 assignment2 = Assignment.create(
   title: "Build a Web page 4",
@@ -105,6 +115,7 @@ assignment2 = Assignment.create(
   description: "I need to design a cool website with some Animation graphics and video. The New company is a PPE manufacturer and distributor. We will sell direct to the public.",
   client_id: client2.id,
   timeframe: 25,
+  status: "published"
 )
 assignment1 = Assignment.create(
   title: "Dedicated React Developer 5",
@@ -114,6 +125,7 @@ assignment1 = Assignment.create(
   description: "We are looking for talented React developer with 3 years of experience who can work for at least 6 months for the project. We will give the candidate the small test assignment (we will pay for the hours he spent for the test assignment), and consider who to work with.",
   client_id: client.id,
   timeframe: 70,
+  status: "published"
 )
 assignment3 = Assignment.create(
   title: "Build an API 6",
@@ -123,6 +135,7 @@ assignment3 = Assignment.create(
   description: "I need to design a cool website with some Animation graphics and video. The New company is a PPE manufacturer and distributor. We will sell direct to the public.",
   client_id: client3.id,
   timeframe: 25,
+  status: "published"
 )
 assignment4 = Assignment.create(
   title: "Build a Native App",
@@ -132,6 +145,7 @@ assignment4 = Assignment.create(
   description: "I need to design a cool website with some Animation graphics and video. The New company is a PPE manufacturer and distributor. We will sell direct to the public.",
   client_id: client.id,
   timeframe: 25,
+  status: "published"
 )
 assignment5 = Assignment.create(
   title: "Build a Full Stack Rails application",
@@ -141,4 +155,5 @@ assignment5 = Assignment.create(
   description: "I need to design a cool website with some Animation graphics and video. The New company is a PPE manufacturer and distributor. We will sell direct to the public.",
   client_id: client.id,
   timeframe: 25,
+  status: "published"
 )
