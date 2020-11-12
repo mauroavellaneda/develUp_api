@@ -25,23 +25,29 @@ class Api::AssignmentsController < ApplicationController
 
   def update
     assignment = Assignment.find(params[:id])
-    if current_user.role == "develuper"
-      if assignment.applicants.include?(current_user.id)
-        render json: { message: "You already applied to this assignment" }, status: :unprocessable_entity
-      else
-        assignment.applicants.push(current_user.id)
-        assignment.save!
-        render json: { message: "successfully applied" }, status: :ok
-      end
-    else
-      # assignment.update(params)
-      if assignment.update(update_params)
-        attributes = { selected: params[:assignment][:selected], status: params[:assignment][:status] }
-        assignment.assign_attributes(attributes)
-        assignment.save!
-        # binding.pry
-        render json: { message: "successfully applied" }, status: :ok
-      end
+    # if current_user.role == "develuper"
+    #   if assignment.applicants.include?(current_user.id)
+    #     render json: { message: "You already applied to this assignment" }, status: :unprocessable_entity
+    #   else
+    #     assignment.applicants.push(current_user.id)
+    #     assignment.save!
+    #     render json: { message: "successfully applied" }, status: :ok
+    #   end
+    # else
+    #   assignment.update!(update_params)
+    #   render json: { message: "successfully applied" }, status: :ok
+    #   # if assignment.update(update_params)
+    #   # attributes = { selected: assignment.selected, status: assignment.status }
+    #   # # assignment.update!(selected: assignment.selected)
+    #   # # assignment.update!(status: params[:status])
+    #   # end
+    # end
+
+    case current_user.role
+    when "develuper"
+      develuper_update(assignment)
+    when "client"
+      client_update(assignment)
     end
   end
 
@@ -57,6 +63,22 @@ class Api::AssignmentsController < ApplicationController
 
   def restrict_access
     render json: { message: "Sorry, you don't have the necessary permission" }, status: :unauthorized
+  end
+
+  def develuper_update(assignment)
+    assignment.applicants.include?(current_user.id) ?
+      (render json: { message: "You already applied to this assignment" }, status: :unprocessable_entity) :
+      (assignment.applicants.push(current_user.id)
+      assignment.save!
+      render json: { message: "successfully applied" }, status: :ok)
+  end
+
+  def client_update(assignment)
+    assignment.selected ? (render json: { message: "You already choose a develuper" }, status: :unprocessable_entity) :
+      (assignment.update!(update_params)
+      develuper = User.find(id: assignment.selected)
+      ongoing_assignment.update(params[:assignment.id])
+      render json: { message: "successfully applied" }, status: :ok)
   end
 
   def update_params
