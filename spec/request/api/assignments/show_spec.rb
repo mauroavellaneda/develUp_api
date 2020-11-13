@@ -32,9 +32,6 @@ RSpec.describe "GET /api/assignments", type: :request do
     it "returns a specific assignment status" do
       expect(response_json["assignment"]["status"]).to eq "published"
     end
-    it "returns a specific assignment status" do
-      expect(response_json["assignment"]["selected"]).to eq 45
-    end
   end
   
   describe "request with wrong id fails" do
