@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 2020_11_12_163738) do
     t.bigint "client_id"
     t.integer "applicants", default: [], array: true
     t.integer "selected"
-    t.integer "status"
+    t.integer "status", default: 0
     t.index ["client_id"], name: "index_assignments_on_client_id"
   end
 
