@@ -6,7 +6,7 @@ client2 = User.create(email: "client2@mail.com", password: "password", company_u
 client3 = User.create(email: "client3@mail.com", password: "password", company_url: "algos", company_name: "asfads", role: "client")
 
 develuper = User.create(name: "Johan", email: "develuper@mail.com", password: "password", level: 5, points: 430, completed_projects: 22, skills: ["Ruby", "Javascript"], role: "develuper")
-develuper1 = User.create(name: "Jhon", email: "develuper1@mail.com", password: "password", level: 9, points: 43, completed_projects: 2, skills: ["React", "Ruby"], role: "develuper")
+develuper1 = User.create(name: "Jenny", email: "develuper1@mail.com", password: "password", level: 9, points: 43, completed_projects: 2, skills: ["React", "Ruby"], role: "develuper")
 
 assignment2 = Assignment.create(
   title: "Build a Web page",
