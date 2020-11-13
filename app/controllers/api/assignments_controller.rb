@@ -6,7 +6,7 @@ class Api::AssignmentsController < ApplicationController
     assignments = if client_index?
         Assignment.where(client_id: params["client_id"])
       else
-        Assignment.all
+        Assignment.where(status: "published")
       end
     render json: assignments, each_serializer: AssignmentsIndexSerializer
   end
